@@ -1,6 +1,9 @@
 <?php
 
-
+use App\Model\Category;
+use App\Model\Like;
+use App\Model\Question;
+use App\Model\Reply;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +17,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class,10)->create();
-        factory(App\Model\Category::class,5)->create();
-        factory(App\Model\Question::class,10)->create();
-        factory(App\Model\Reply::class,50)->create()->each(function($reply){
+        factory(Category::class,5)->create();
+        factory(Question::class,10)->create();
+        factory(Reply::class,50)->create()->each(function($reply){
 
-            return $reply->like()->save(factory(App\Model\Like::class)->make());
+            return $reply->like()->save(factory(Like::class)->make());
 
         });
     }

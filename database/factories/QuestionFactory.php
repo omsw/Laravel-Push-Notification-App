@@ -1,9 +1,11 @@
 <?php
 
-
+use App\Model\Category;
+use App\Model\Question;
+use App\User;
 use Faker\Generator as Faker;
 
-$factory->define(App\Model\Model::class, function (Faker $faker) {
+$factory->define(Question::class, function (Faker $faker) {
          $title = $faker->sentence;
     return [
         //
@@ -11,10 +13,10 @@ $factory->define(App\Model\Model::class, function (Faker $faker) {
         "slug" => str_slug($title),
         "body" => $faker->text,
         "category_id" => function(){
-            return App\Model\Category::all()->random();
+            return Category::all()->random();
         },
         "user_id" => function(){
-            return App\User::all()->random();
+            return User::all()->random();
         }
     ];
 });
