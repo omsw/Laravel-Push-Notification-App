@@ -31,7 +31,7 @@ class ReplyController extends Controller
     {
         //Reply::create($request->all());
         $reply = $question->replies()->create($request->all());
-        return response(["reply"=>$reply],200);
+        return response(["reply"=> new ReplyResource($reply)],200);
     }
 
     /**
@@ -55,7 +55,7 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reply $reply)
+    public function update(Question $question,Request $request, Reply $reply)
     {
         $reply->update($request->all());
         return response("Updated",200);
@@ -67,7 +67,7 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy(Question $question,Reply $reply)
     {
         $reply->delete();
         return response("Deleted",200);

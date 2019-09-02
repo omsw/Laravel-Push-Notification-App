@@ -10,7 +10,7 @@ class Reply extends Model
     //
 
 
-    protected $gaurded =[];
+    protected $guarded =[];
 
     public function question(){
 
